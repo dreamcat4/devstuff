@@ -1,5 +1,5 @@
 ---
- - name: Install packages 
+ - name: Install packages ubuntu
    package:
      name:
       #- cockpit
@@ -8,10 +8,10 @@
        - git
        - vim
      state: present
-   when: ansible_facts == "Ubuntu"
+   when: ansible_pkg_mgr == "apt"
   #ignore_errors: yes
   #
- - name: Install packages
+ - name: Install packages yum
    package:
      name:
       #- cockpit
@@ -20,30 +20,30 @@
        - git
        - vim
      state: present
-   when: ansible_facts == "CentOS"
+   when: ansible_pkg_mgr == "yum"
   #ignore_errors: yes
  
- - name: install dep
+ - name: install dep ubuntu
    package:
      name: "{{ extern_dep_ubuntu }}"
      state: present
-   when: ansible_facts == "Ubuntu"
+   when: ansible_pkg_mgr == "apt"
 
- - name: install package 
+ - name: install package ubuntu
    package:
      name: "{{ extern_package_ubuntu }}"
      state: present
-   when: ansible_facts == "Ubuntu"
+   when: ansible_pkg_mgr == "apt"
 
 
- - name: install dep
+ - name: install dep yum
    package:
      name: "{{ extern_dep_centos }}"
      state: present
-   when: ansible_facts == "CentOS"
+   when: ansible_pkg_mgr == "yum"
 
- - name: install package 
+ - name: install package yum
    package:
      name: "{{ extern_package_centos }}"
      state: present
-   when: ansible_facts == "CentOS"
+   when: ansible_pkg_mgr == "yum"
