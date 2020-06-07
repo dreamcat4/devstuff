@@ -15,5 +15,6 @@
   roles:
     - add_package
     - install_package
+    - service
    #- puppet
    #- pip
