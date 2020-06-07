@@ -5,6 +5,8 @@ Both folders have [vagrantfile](ubuntu/Vagrant) for multi node setup and use ans
 - [ubuntu-folder](ubuntu)
 - [centos-folder](ubuntu)
 
-There are also ansible-playbooks to setup jenins mainly to use ansible with masters node defined in [vagrantfile](ubuntu/Vagrant)
+There are also ansible-playbooks to setup jenins mainly to use ansible with masters node defined in [vagrantfile](ubuntu/Vagrant) and foreman install playbook.
 
-- [jenins](jenkins)
+- [jenkins](jenkins)
+- [foreman](foreman)
+
