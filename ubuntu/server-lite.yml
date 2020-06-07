@@ -79,7 +79,7 @@
       path: /etc/ssh/sshd_config
       regexp: '/usr/lib/openssh/sftp-server'
       line: "Subsystem  sftp /usr/libexec/openssh/sftp-server"
-    when: ansible_facts == "CentOS"
+    when: ansible_pkg_mgr == "yum"
 
   - name: add user called user with sudo right
     user:

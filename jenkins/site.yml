@@ -5,6 +5,7 @@
   #include_vars:
      #dir: group_vars
   #gather_facts: no
+  gather_facts: yes
   hosts: all
   remote_user: root
   #remote_user: user
