@@ -1,7 +1,7 @@
 # devstuff
-development setup like with vagrant, docker, ansible and other.
+development setup with vagrant, docker, ansible and other.
 
-Both folders have [vagrantfile](ubuntu/Vagrant) for multi node setup and use ansible to setup the machines.
+Both folders have [vagrantfile](ubuntu/Vagrant) for multi node setup and and ansible to setup the machines.
 - [ubuntu-folder](ubuntu)
 - [centos-folder](ubuntu)
 
