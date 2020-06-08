@@ -7,6 +7,8 @@
        - ansible
        - git
        - vim
+       - xvfb
+       - fontconfig
      state: present
    when: ansible_pkg_mgr == "apt"
   #ignore_errors: yes
@@ -19,6 +21,7 @@
        - centos-release-ansible-29
        - git
        - vim
+       - fontconfig
      state: present
    when: ansible_pkg_mgr == "yum"
   #ignore_errors: yes
