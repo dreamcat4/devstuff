@@ -37,7 +37,7 @@
     package:
       name:
         - cockpit
-        - podman
+        #- podman
         - curl
         - wget
         - python2
@@ -50,8 +50,8 @@
         - lvm2
         - epel-release
         - sudo
-        - bash-completion�
-        #- centos-release-scl-rh�
+        - bash-completion
+        #- centos-release-scl-rh
         #- centos-release-scl
       state: present
     ignore_errors: yes

@@ -1,15 +1,15 @@
 ---
 - hosts: all
-  remote_user: root
-  #remote_user: vagrant
-  #become: yes
-  #become_method: sudo
+  #remote_user: root
+  remote_user: vagrant
+  become: yes
+  become_method: sudo
 
   tasks:
-  - name: upgrade all packages
-    package:
-      name: "*"
-      state: latest
+  #- name: upgrade all packages
+  #  package:
+  #    name: "*"
+  #    state: latest
 
   - name: Install packages ubuntu and debian
     package:
@@ -37,7 +37,7 @@
     package:
       name:
         - cockpit
-        - podman
+        #- podman
         - curl
         - wget
         - python2

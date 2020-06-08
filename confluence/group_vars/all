@@ -1,0 +1,14 @@
+# conflunce
+
+CONFUSER: hf-wiki
+vgname: vg1
+lvname: VarConfluence
+device: /dev/mapper/vg1-VarConfluence
+filesystem: xfs
+serverPath: /var/confluence
+installPath: /opt/confluence
+lnPath: /opt/confluence/
+lnDestPath: /opt/confluence/atlassian-confluence-7.3.3
+logPath: /opt/confluence/current/logs
+VarLog: /var/log/
+

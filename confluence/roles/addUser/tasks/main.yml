@@ -1,0 +1,12 @@
+---
+
+## Configuration
+
+
+- name: add user for confluence
+  user:
+    name: "{{ CONFUSER }}"
+    shell: /bin/bash
+    #groups: admins
+    #append: yes
+    state: present

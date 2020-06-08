@@ -1,0 +1,21 @@
+---
+
+#- name: check if path to conflucence exist 
+  #stat: 
+    #path: "{{ installPath }}"
+  #register: installdir
+
+- name: create confluence install dir
+  file:
+    path: "{{ installPath }}"
+    state: directory
+    owner: root
+    group: root
+
+- name: create symlinc for confluene dir
+  file:
+    scr: "{{ lnPath }}"
+    dest: "{{ lnDestPath"
+    owner: root
+    group: root
+    state: link
