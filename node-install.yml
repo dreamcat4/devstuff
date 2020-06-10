@@ -5,8 +5,8 @@
   #become: yes
   #become_method: sudo
   vars:
-    lnnpm: /opt/node/node-v12.16.3-linux-x64/bin/npm
-    lnnode: /opt/node/node-v12.16.3-linux-x64/bin/node
+    ln_npm: /opt/node/node-v12.16.3-linux-x64/bin/npm
+    ln_node: /opt/node/node-v12.16.3-linux-x64/bin/node
     lnDestnpm: /usr/bin/npm
     lnDestnode: /usr/bin/node
     mkdir: /opt/node
@@ -33,7 +33,7 @@
 # problems with ln
   - name: create symlinc for npm
     file:
-      scr: "{{ lnode }}"
+      path: "{{ ln_node }}"
       dest: "{{ lnDestnode }}"
       #owner: root
       #group: root
@@ -41,7 +41,7 @@
 
   - name: create symlinc for node
     file:
-      scr: "{{ lnpm }}"
+      path: "{{ ln_npm }}"
       dest: "{{ lnDestnpm }}"
       #owner: root
       #group: root
