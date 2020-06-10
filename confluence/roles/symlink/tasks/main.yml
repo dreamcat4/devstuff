@@ -5,17 +5,18 @@
     #path: "{{ installPath }}"
   #register: installdir
 
-- name: create  install dir
+- name: create install dir
   file:
     path: "{{ installPath }}"
     state: directory
     owner: root
     group: root
 
-- name: create symlinc for istall dir
+
+- name: create symlinc for install dir
   file:
-    scr: "{{ lnPath }}"
-    dest: "{{ lnDestPath }}"
+    path: /opt/confluence/current
+    dest: "{{ lnPath }}"
     owner: root
     group: root
     state: link
@@ -53,5 +54,5 @@
     dest: "{{ lnDestPath }}"
     owner: "{{ user }}"
     group: "{{ user }}"
-    mode: 700
+    mode: '700'
     state: link
