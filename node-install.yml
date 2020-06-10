@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: all 
   remote_user: root
   #remote_user: vagrant
   #become: yes
@@ -30,18 +30,19 @@
       src: /opt/node/node-v12.16.3-linux-x64.tar.xz
       dest: /opt/node/
 
+# problems with ln
   - name: create symlinc for npm
     file:
-      scr: "{{ lnnpm }}"
-      dest: "{{ lnDestnpm }}"
-      owner: root
-      group: root
+      scr: /opt/node/node-v12.16.3-linux-x64/bin/npm
+      dest: /usr/bin/npm
+      #owner: root
+      #group: root
       state: link
 
   - name: create symlinc for node
     file:
-      scr: "{{ lnnode }}"
-      dest: "{{ lnDestnode }}"
-      owner: root
-      group: root
+      scr: /opt/node/node-v12.16.3-linux-x64/bin/node
+      dest: /usr/bin/node
+      #owner: root
+      #group: root
       state: link
