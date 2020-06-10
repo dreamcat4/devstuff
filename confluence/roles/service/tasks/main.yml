@@ -1,8 +1,8 @@
 ---
 - name: place init script
   copy:
-    src: files/confluence
-    dest: /etc/init.d/confluence
+    src: "{{ initfile }}"
+    dest: "{{ inid }}"
     owner: root
     group: root
     mode: u=x

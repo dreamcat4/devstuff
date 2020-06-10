@@ -2,13 +2,13 @@
 
 - name: Copy application
   copy:
-    src: files/"{{ installPath }}"
-    dest: /opt/confluence/
+    src: "{{ application }}"
+    dest: "{{ installPath }}"
     owner: root
     group: root
     mode: u=rw,g=r,o=r
 
 - name: Unarchive 
   unarchive:
-    src: "{{ installPath }}"
+    src: "{{ tarpath }}"
     dest: "{{ installPath }}"
