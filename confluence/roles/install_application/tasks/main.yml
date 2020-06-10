@@ -12,3 +12,4 @@
   unarchive:
     src: "{{ tarpath }}"
     dest: "{{ installPath }}"
+    remote_src: yes
