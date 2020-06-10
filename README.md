@@ -11,4 +11,5 @@ There are also ansible-playbooks to setup jenins mainly to use ansible with mast
 
 - [jenkins](jenkins)
 - [foreman](foreman)
-
+- [nodejs](node-install.yml)
+- [confluence](confluence)
