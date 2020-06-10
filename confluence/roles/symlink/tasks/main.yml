@@ -1,0 +1,65 @@
+---
+
+#- name: check if path to conflucence exist 
+  #stat: 
+    #path: "{{ installPath }}"
+  #register: installdir
+
+- name: create  install dir
+  file:
+    path: "{{ installPath }}"
+    state: directory
+    owner: root
+    group: root
+
+- name: create symlinc for istall dir
+  file:
+    scr: "{{ lnPath }}"
+    dest: "{{ lnDestPath }}"
+    owner: root
+    group: root
+    state: link
+
+- name: Recursively remove directory
+  file:
+    path: "{{ logPath }}"
+    state: absent
+
+- name: permissions conf dir 
+  file:
+    path: "{{ conflocation  }}"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    #mode: 700
+
+- name: permissions temp dir 
+  file:
+    path: "{{ templocation }}"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    #mode: 700
+
+
+- name: permissions work dir 
+  file:
+    path: "{{ worklocation }}"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    #mode: 700
+
+- name: create symlinc for var-log
+  file:
+    scr: "{{ VarLog }}"
+    dest: "{{ lnDestPath }}"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 700
+    state: link
+
+- name: place init script
+  copy:
+    src: templates/confluence
+    dest: /etc/init.d/confluence
+    owner: root
+    group: root
+    mode: u=x

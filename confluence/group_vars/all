@@ -1,14 +1,18 @@
 # conflunce
 
-CONFUSER: hf-wiki
+user: hf-wiki
+admin: root
 vgname: vg1
 lvname: VarConfluence
 device: /dev/mapper/vg1-VarConfluence
 filesystem: xfs
-serverPath: /var/confluence
+storagePath: /var/confluence
 installPath: /opt/confluence
-lnPath: /opt/confluence/
-lnDestPath: /opt/confluence/atlassian-confluence-7.3.3
+lnPath: /opt/confluence/atlassian-confluence-7.3.3
+lnDestPath: /opt/confluence/current
 logPath: /opt/confluence/current/logs
 VarLog: /var/log/
 
+conflocation: /opt/confluence/current/conf/Standalone/localhost
+templocation: /opt/confluence/current/temp 
+worklocation: /opt/confluence/current/work

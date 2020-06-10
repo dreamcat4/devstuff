@@ -5,7 +5,7 @@
 
 - name: add user for confluence
   user:
-    name: "{{ CONFUSER }}"
+    name: "{{ user }}"
     shell: /bin/bash
     #groups: admins
     #append: yes
