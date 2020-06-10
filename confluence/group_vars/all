@@ -3,11 +3,13 @@
 user: hf-wiki
 admin: root
 vgname: vg1
+service: confluence
 lvname: VarConfluence
 device: /dev/mapper/vg1-VarConfluence
 filesystem: xfs
 storagePath: /var/confluence
-installPath: /opt/confluence
+installPath: /opt/confluence/
+tarpath: /opt/confluence/atlassian-confluence-7.3.3.tar.gz
 lnPath: /opt/confluence/atlassian-confluence-7.3.3
 lnDestPath: /opt/confluence/current
 logPath: /opt/confluence/current/logs

@@ -1,0 +1,47 @@
+---
+- hosts: localhost
+  remote_user: root
+  #remote_user: vagrant
+  #become: yes
+  #become_method: sudo
+  vars:
+    lnnpm: /opt/node/node-v12.16.3-linux-x64/bin/npm
+    lnnode: /opt/node/node-v12.16.3-linux-x64/bin/node
+    lnDestnpm: /usr/bin/npm
+    lnDestnode: /usr/bin/node
+    mkdir: /opt/node
+    tar:  https://nodejs.org/dist/v12.16.3/node-v12.16.3-linux-x64.tar.xz
+
+  tasks:
+  - name: create  install dir
+    file:
+      path: "{{ mkdir }}"
+      state: directory
+      owner: root
+      group: root
+
+  - name: Download node-lts
+    get_url:
+      url: "{{ tar }}"
+      dest: /opt/node/
+
+  - name: Extract file
+    unarchive:
+      src: /opt/node/node-v12.16.3-linux-x64.tar.xz
+      dest: /opt/node/
+
+  - name: create symlinc for npm
+    file:
+      scr: "{{ lnnpm }}"
+      dest: "{{ lnDestnpm }}"
+      owner: root
+      group: root
+      state: link
+
+  - name: create symlinc for node
+    file:
+      scr: "{{ lnnode }}"
+      dest: "{{ lnDestnode }}"
+      owner: root
+      group: root
+      state: link

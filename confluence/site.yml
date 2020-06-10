@@ -1,24 +1,16 @@
 ---
-- name: setup venter vm server
-  gather_facts: no
-  hosts: localhost
-  #remote_user: root
+- name: setup application
+  gather_facts: yes
+  hosts: cnode1
+  remote_user: root
   #remote_user: user
   #become: yes
   #become_method: sudo
 
   roles:
-    #-  addUser
-    - preInstall
-    #- installation
-
-#- name: config after creating the vm
-  #gather_facts: no
-  #hosts: all
-  #remote_user: root
-  #remote_user: user
-  #become: yes
-  #become_method: sudo
-
-  #roles:
-    #- hostname
+    - addUser
+    - install_application
+    - install_packages
+    - lvm 
+    - symlink
+    - service
