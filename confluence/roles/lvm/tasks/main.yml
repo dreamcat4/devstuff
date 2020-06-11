@@ -11,19 +11,21 @@
     lvg: Opt
     size: 5000
     resizefs: true
-  when: vg_Opt|bool == True
+  #when: vg_Opt|bool == True
+  when: vg_Opt.stat.exists == True
 
-- name: check for filesytem info for lvm
-  parted: device=/dev/sdb unit=MiB
+- name: check for filesytem info for to make lvm
+  stat:
+    path: /dev/sdb
   register: sdb_info
-  ignore_errors: yes
 
 - name: Create a logical volume for storing application data
   lvol:
     vg: "{{ vgname }}"
     lv: "{{ lvname }}"
     size: "{{ lvsize }}"
-  when: sdb_info|bool == True
+  #when: sdb_info|bool == True
+  when: sdb_info.stat.exists == True
 
 - name: Create a filesystem for lvm volume
   filesystem:
@@ -32,7 +34,8 @@
       #resizefs: no 
       force: no 
       state: present
-  when: sdb_info|bool == True
+  #when: sdb_info|bool == True
+  when: sdb_info.stat.exists == True
 
 - name: Mount the volume 
   mount:
@@ -40,5 +43,6 @@
     src: "{{ dataPath }}"
     opts: defaults
     fstype: xfs
-  when: sdb_info|bool == True
+  #when: sdb_info|bool == True
+  when: sdb_info.stat.exists == True
 

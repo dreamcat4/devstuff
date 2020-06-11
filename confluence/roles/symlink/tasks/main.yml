@@ -31,6 +31,24 @@
 #    path: "{{ logPath }}"
 #    state: absent
 
+- name: permissions install dir
+  file:
+    path: "{{ installPath }}"
+    #path: /opt/confluence/
+    state: directory
+    owner: "{{ admin }}"
+    group: "{{ admin }}"
+    #mode: 700
+   
+- name: permissions install dir current
+  file:
+    #path: "{{ installPath }}"
+    path: /opt/confluence/*
+    state: directory
+    owner: "{{ admin }}"
+    group: "{{ admin }}"
+    #mode: 700
+
 - name: permissions conf dir 
   file:
     path: "{{ conflocation }}"
@@ -75,7 +93,7 @@
 
 - name: permissions work dir 
   file:
-    path: "{{ worklocation }}"
+    path: "{{ VarLog }}"
     owner: "{{ user }}"
     group: "{{ user }}"
     #mode: 700

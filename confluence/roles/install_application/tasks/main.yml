@@ -13,6 +13,15 @@
     owner: "{{ user}}"
     group: "{{ user}}"
 
+- name: check if path to conflucence exist
+  stat:
+    path: "{{ tarpath }}"
+  register: tarpath
+
+- name: check if path to conflucence exist
+  stat:
+    path: "{{ ln_path }}"
+  register: application_dir
 
 - name: Copy application
   copy:
@@ -21,9 +30,11 @@
     owner: root
     group: root
     mode: u=rw,g=r,o=r
+  when: tarpath.stat.exists == False
 
 - name: Unarchive 
   unarchive:
     src: "{{ tarpath }}"
     dest: "{{ installPath }}"
     remote_src: yes
+  when: application_dir.stat.exists == False
