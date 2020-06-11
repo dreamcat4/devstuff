@@ -10,7 +10,7 @@
 # Name of app ( JIRA, Confluence, etc )
 APP=confluence
 # Name of the user to run as
-USER=bfweb
+USER=hf-wiki
 # Location of application's bin directory
 CATALINA_HOME=/opt/confluence/current
 # Location of Java JDK
