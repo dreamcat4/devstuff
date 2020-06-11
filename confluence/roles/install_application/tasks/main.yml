@@ -6,6 +6,14 @@
     owner: root
     group: root
 
+- name: create install dir
+  file:
+    path: "{{ VarLog }}"
+    state: directory
+    owner: "{{ user}}"
+    group: "{{ user}}"
+
+
 - name: Copy application
   copy:
     src: "{{ application }}"

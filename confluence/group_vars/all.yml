@@ -13,10 +13,10 @@ tarpath: /opt/confluence/atlassian-confluence-7.3.3.tar.gz
 initfile: files/confluence
 inid: /etc/init.d/confluence
 application: files/atlassian-confluence-7.3.3.tar.gz
-lnPath: /opt/confluence/atlassian-confluence-7.3.3/
-lnDestPath: /opt/confluence/current
+ln_path: /opt/confluence/atlassian-confluence-7.3.3
+ln_destpath: /opt/confluence/current
 logPath: /opt/confluence/current/logs
-VarLog: /var/log/
+VarLog: /var/log/confluence
 
 conflocation: /opt/confluence/current/conf/Standalone/localhost
 templocation: /opt/confluence/current/temp 
