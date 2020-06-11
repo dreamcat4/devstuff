@@ -13,4 +13,4 @@
     - install_packages
     - lvm 
     - symlink
-    - service
+    #- service

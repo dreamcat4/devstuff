@@ -12,14 +12,16 @@
     owner: root
     group: root
 
+- name: permissions install dir
+  file:
+    path: "{{ installPath }}"
+    owner: "{{ admin }}"
+    group: "{{ admin }}"
+    #mode: 700
+    state: directory
 
 - name: create symlinc for install dir
-  file:
-    path: /opt/confluence/current
-    dest: "{{ lnPath }}"
-    owner: root
-    group: root
-    state: link
+  command: ln -s "{{ lnPath }}" "{{ lnDestPath }}"
 
 - name: Recursively remove directory
   file:
@@ -40,6 +42,8 @@
     group: "{{ user }}"
     #mode: 700
 
+- name: create symlinc for var-log
+  command: ln -s "{{ VarLog }}" "{{ lnDestPath }}"
 
 - name: permissions work dir 
   file:
@@ -47,12 +51,3 @@
     owner: "{{ user }}"
     group: "{{ user }}"
     #mode: 700
-
-- name: create symlinc for var-log
-  file:
-    scr: "{{ VarLog }}"
-    dest: "{{ lnDestPath }}"
-    owner: "{{ user }}"
-    group: "{{ user }}"
-    mode: '700'
-    state: link
