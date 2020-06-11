@@ -1,4 +1,10 @@
 ---
+- name: create install dir
+  file:
+    path: "{{ installPath }}"
+    state: directory
+    owner: root
+    group: root
 
 - name: Copy application
   copy:

@@ -5,20 +5,12 @@
     #path: "{{ installPath }}"
   #register: installdir
 
-- name: create install dir
-  file:
-    path: "{{ installPath }}"
-    state: directory
-    owner: root
-    group: root
 
-- name: permissions install dir
-  file:
-    path: "{{ installPath }}"
-    owner: "{{ admin }}"
-    group: "{{ admin }}"
-    #mode: 700
-    state: directory
+
+- name: check if path to conflucence exist 
+  stat: 
+    path: "{{ lnDestPath }}"
+  register: lnDestPath
 
 - name: create symlinc for install dir
   command: ln -s "{{ lnPath }}" "{{ lnDestPath }}"
