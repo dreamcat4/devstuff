@@ -7,7 +7,7 @@ Both folders have [vagrantfile](ubuntu/Vagrant) for multi node/server setup and 
 
 To choose how many nodes you want edit the variable `NODE_COUNT` in [vagrantfile](ubuntu/Vagrant) and if you choos zero if one node called master.
 
-There are also ansible-playbooks to setup jenkins mainly to use ansible with masters node defined in [vagrantfile](ubuntu/Vagrant) and foreman install playbook.
+There are also ansible-playbooks to setup jenkins mainly to use ansible with masters node defined in [vagrantfile](ubuntu/Vagrant) and other playbook.
 
 - [jenkins](jenkins)
 - [foreman](foreman)
