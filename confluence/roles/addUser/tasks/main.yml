@@ -15,4 +15,4 @@
     #groups: admins
     #append: yes
     state: present
-  when: folder.stat.exist == False
+  when: folder.stat.exists == False
