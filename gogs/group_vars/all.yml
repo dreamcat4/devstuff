@@ -15,10 +15,10 @@ inid: /etc/init.d/gogs
 application: files/gogs_0.11.91_linux_amd64.tar.gz
 newname: gogs_0.11.91
 ln_path: /opt/gogs/gogs_0.11.91
-ln_destpath: /opt/confluence/current
-logPath: /opt/confluence/current/logs
-VarLog: /var/log/confluence
+ln_destpath: /opt/gogs/current
+logPath: /opt/gogs/current/logs
+VarLog: /var/log/gogs
 
-conflocation: /opt/confluence/current/conf/Standalone/localhost
-templocation: /opt/confluence/current/temp 
-worklocation: /opt/confluence/current/work
+conflocation: /opt/gogs/current/conf/Standalone/localhost
+templocation: /opt/gogs/current/temp 
+worklocation: /opt/gogs/current/work

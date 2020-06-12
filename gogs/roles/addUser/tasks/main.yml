@@ -8,7 +8,7 @@
   register: folder
 
 
-- name: add user for confluence
+- name: add user for gogs
   user:
     name: "{{ user }}"
     shell: /bin/bash

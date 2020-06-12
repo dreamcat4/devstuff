@@ -1,11 +1,11 @@
 ---
 
-#- name: check if path to conflucence exist 
+#- name: check if path to gogs exist 
   #stat: 
     #path: "{{ installPath }}"
   #register: installdir
 
-- name: check if path to conflucence exist 
+- name: check if path to gogs exist 
   stat: 
     path: "{{ ln_destpath }}"
   register: ln_destpath
@@ -14,16 +14,16 @@
 - name: create symlinc for install dir
   file:
     src: "{{ ln_path }}"
-    dest: /opt/confluence/current
-    #src: /opt/confluence/atlassian-confluence-7.3.3 
-    #dest: /opt/confluence/current
+    dest: /opt/gogs/current
+    #src: /opt/gogs/atlassian-gogs-7.3.3 
+    #dest: /opt/gogs/current
     #owner: root
     #group: root
     state: link
 
 #- name: create symlinc for install dir
 #  command: ln -s "{{ ln_path }}" "{{ ln_destpath }}"
-  #command: ln -s /opt/confluence/atlassian-confluence-7.3.3 /opt/confluence/current
+  #command: ln -s /opt/gogs/atlassian-gogs-7.3.3 /opt/gogs/current
   #when: lnDestPath|bool == False
 
 #- name: Recursively remove directory
@@ -34,7 +34,7 @@
 - name: permissions install dir
   file:
     path: "{{ installPath }}"
-    #path: /opt/confluence/
+    #path: /opt/gogs/
     state: directory
     owner: "{{ admin }}"
     group: "{{ admin }}"
@@ -43,7 +43,7 @@
 - name: permissions install dir current
   file:
     #path: "{{ installPath }}"
-    path: /opt/confluence/*
+    path: /opt/gogs/*
     state: directory
     owner: "{{ admin }}"
     group: "{{ admin }}"
@@ -70,7 +70,7 @@
     group: "{{ user }}"
     #mode: 700
 
-#- name: check if path to conflucence exist 
+#- name: check if path to gogs exist 
 #  stat: 
 #    path: "{{ lnDestPath }}"
   #register: var-log
@@ -78,14 +78,14 @@
 
 - name: create symlinc for var-log
   file:
-    dest: /opt/confluence/current/logs
+    dest: /opt/gogs/current/logs
     state: absent
   #when: var-log|bool == False
 
 - name: create symlinc for var-log
   file:
     src: "{{ VarLog }}"
-    dest: /opt/confluence/current/logs
+    dest: /opt/gogs/current/logs
     #owner: root
     #group: root
     state: link

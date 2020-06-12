@@ -13,12 +13,12 @@
     owner: "{{ user}}"
     group: "{{ user}}"
 
-- name: check if path to conflucence exist
+- name: check if path to gogs exist
   stat:
     path: "{{ tarpath }}"
   register: tarpath
 
-- name: check if path to conflucence exist
+- name: check if path to gogs exist
   stat:
     path: "{{ ln_path }}"
   register: application_dir
