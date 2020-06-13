@@ -7,7 +7,6 @@
     path: /opt/DAM
   register: folder
 
-
 - name: add user for confluence
   user:
     name: "{{ user }}"
