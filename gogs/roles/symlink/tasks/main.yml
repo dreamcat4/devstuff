@@ -1,9 +1,13 @@
 ---
 
-#- name: check if path to gogs exist 
-  #stat: 
-    #path: "{{ installPath }}"
-  #register: installdir
+- name: check if path to gogs exist 
+  stat: 
+    path: "{{ oldnamePath }}"
+  register: newnamedir
+
+- name: rename folder
+  command:  mv "{{ oldnamePath }}"
+  when: newnamedir.stat.exists == True
 
 - name: check if path to gogs exist 
   stat: 
@@ -21,16 +25,6 @@
     #group: root
     state: link
 
-#- name: create symlinc for install dir
-#  command: ln -s "{{ ln_path }}" "{{ ln_destpath }}"
-  #command: ln -s /opt/gogs/atlassian-gogs-7.3.3 /opt/gogs/current
-  #when: lnDestPath|bool == False
-
-#- name: Recursively remove directory
-#  file:
-#    path: "{{ logPath }}"
-#    state: absent
-
 - name: permissions install dir
   file:
     path: "{{ installPath }}"
@@ -42,39 +36,33 @@
    
 - name: permissions install dir current
   file:
-    #path: "{{ installPath }}"
-    path: /opt/gogs/*
+    path: "{{ ln_destpath }}"
+    #path: /opt/gogs/*
     state: directory
     owner: "{{ admin }}"
     group: "{{ admin }}"
     #mode: 700
 
-- name: permissions conf dir 
-  file:
-    path: "{{ conflocation }}"
-    owner: "{{ user }}"
-    group: "{{ user }}"
+#- name: permissions conf dir 
+#  file:
+#    path: "{{ conflocation }}"
+#    owner: "{{ user }}"
+#    group: "{{ user }}"
     #mode: 700
 
-- name: permissions temp dir 
-  file:
-    path: "{{ templocation }}"
-    owner: "{{ user }}"
-    group: "{{ user }}"
+#- name: permissions temp dir 
+#  file:
+#    path: "{{ templocation }}"
+#    owner: "{{ user }}"
+#    group: "{{ user }}"
     #mode: 700
     #
-- name: permissions work dir 
-  file:
-    path: "{{ worklocation }}"
-    owner: "{{ user }}"
-    group: "{{ user }}"
+#- name: permissions work dir 
+#  file:
+#    path: "{{ worklocation }}"
+#    owner: "{{ user }}"
+#    group: "{{ user }}"
     #mode: 700
-
-#- name: check if path to gogs exist 
-#  stat: 
-#    path: "{{ lnDestPath }}"
-  #register: var-log
-
 
 - name: create symlinc for var-log
   file:
