@@ -1,7 +1,7 @@
 ---
 - name: setup forman for ubuntu server
   gather_facts: no
-  hosts: foreman01
+  hosts: all
   remote_user: root
   #remote_user: user
   #become: yes

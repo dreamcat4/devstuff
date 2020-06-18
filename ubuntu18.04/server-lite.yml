@@ -2,6 +2,7 @@
 - hosts: all
   #remote_user: root
   remote_user: vagrant
+  #remote_user: user
   become: yes
   become_method: sudo
 
