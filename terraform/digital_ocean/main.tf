@@ -16,4 +16,5 @@ resource "digitalocean_droplet" "example" {
   image    = "ubuntu-18-04-x64"
   region   = "fra1"
   vpc_uuid = digitalocean_vpc.example.id
+  ssh_keys = [data.digitalocean_ssh_key.example.id]
 }
