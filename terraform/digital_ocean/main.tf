@@ -1,4 +1,3 @@
-#variable "dd2ef16da468564a15a8718734816b0e0a5102840f89c2bc8ab94b83586924ea" {}
 variable "do_token" {}
 
 # onfigure the DigitalOcean Provider
