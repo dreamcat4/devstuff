@@ -18,3 +18,5 @@ There is also some example terraform setup.
 
 -{terraform}(terraform)
 
+When to try out a terraform config you an user the script [gettf](gettf)
+
