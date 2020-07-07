@@ -13,3 +13,8 @@ There are also ansible-playbooks to setup jenkins mainly to use ansible with mas
 - [foreman](foreman)
 - [nodejs](node-install.yml)
 - [confluence](confluence)
+
+There is also some example terraform setup.
+
+-{terraform}(terraform)
+
