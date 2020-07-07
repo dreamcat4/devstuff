@@ -43,8 +43,18 @@ resource "digitalocean_vpc" "fra2-net" {
   ip_range = "10.2.1.0/24"
 }
 
-resource "digitalocean_droplet" "test01" {
-  name     = "test01"
+data "digitalocean_volume" "media-stor" {
+  name   = "media-stor"
+  region = "nyc3"
+}
+
+resource "digitalocean_volume_attachment" "media-stor" {
+  droplet_id = digitalocean_droplet.media01.id
+  volume_id  = data.digitalocean_volume.example.id
+}
+
+resource "digitalocean_droplet" "media01" {
+  name     = "media01"
   size     = "s-1vcpu-1gb"
   image    = "ubuntu-18-04-x64"
   region   = "fra1"
