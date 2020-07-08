@@ -16,7 +16,8 @@ There are also ansible-playbooks to setup jenkins mainly to use ansible with mas
 
 There is also some example terraform setup.
 
--{terraform}(terraform)
+-[terraform](terraform)
 
-When to try out a terraform config you an user the script [gettf](gettf)
+When to try out a terraform config you an use this script [gettf](gettf) to copy 
+terraform examples to your home folder.
 
