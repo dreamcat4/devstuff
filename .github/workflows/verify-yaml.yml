@@ -23,8 +23,18 @@ jobs:
         # targets: |
         #   playbook_1.yml
         #   playbook_2.yml
-        targets: 
-          site.yml
+        targets: |
+          ansible/node-install.yml
+          ansible/foreman/site.yml
+          ansible/gogs/site.yml
+          ansible/confluence/site.yml
+          vagrant/centos7/server-lite.yml
+          vagrant/centos8/server-lite.yml
+          vagrant/ubuntu18.04/server-lite.yml
+          vagrant/ubuntu20.04/server-lite.yml
+
+
+
         # [optional]
         # Arguments to be passed to the ansible-lint
 
