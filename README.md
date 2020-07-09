@@ -21,3 +21,6 @@ There is also some example terraform setup.
 When to try out a terraform config you an use this script [gettf](gettf) to copy 
 terraform examples to your home folder.
 
+
+If you want an example on a cloud server setup with asible playbook that use
+fail2ban look here [cloud server setup]{https://github.com/habbis/cloud_server_setup}
