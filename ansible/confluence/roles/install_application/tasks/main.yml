@@ -34,7 +34,8 @@
 
 - name: Unarchive 
   unarchive:
-    src: "{{ tarpath }}"
+    #src: "{{ tarpath }}"
+    src: /opt/confluence/atlassian-confluence-7.3.3.tar.gz
     dest: "{{ installPath }}"
     remote_src: yes
   when: application_dir.stat.exists == False

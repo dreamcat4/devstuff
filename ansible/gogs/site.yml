@@ -1,7 +1,7 @@
 ---
 - name: setup application
   gather_facts: yes
-  hosts: cnode2
+  hosts: all
   remote_user: root
   #remote_user: user
   #become: yes
@@ -11,6 +11,6 @@
     - addUser
     - install_application
     - install_packages
-    - lvm 
+    #- lvm
     - symlink
     #- service

@@ -1,12 +1,11 @@
 ---
-
-- name: check if path to gogs exist 
-  stat: 
+- name: check if path to gogs exist
+  stat:
     path: "{{ oldnamePath }}"
   register: newnamedir
 
 - name: rename folder
-  command:  mv "{{ oldnamePath }}"
+  command:  mv "{{ oldnamePath }}" "{{ newname }}"
   when: newnamedir.stat.exists == True
 
 - name: check if path to gogs exist 
@@ -33,31 +32,31 @@
     owner: "{{ admin }}"
     group: "{{ admin }}"
     #mode: 700
-   
+
 - name: permissions install dir current
   file:
-    path: "{{ ln_destpath }}"
+    path: "{{ ln_permissions }}"
     #path: /opt/gogs/*
     state: directory
     owner: "{{ admin }}"
     group: "{{ admin }}"
     #mode: 700
 
-#- name: permissions conf dir 
+#- name: permissions conf dir
 #  file:
 #    path: "{{ conflocation }}"
 #    owner: "{{ user }}"
 #    group: "{{ user }}"
     #mode: 700
 
-#- name: permissions temp dir 
+#- name: permissions temp dir
 #  file:
 #    path: "{{ templocation }}"
 #    owner: "{{ user }}"
 #    group: "{{ user }}"
     #mode: 700
     #
-#- name: permissions work dir 
+#- name: permissions work dir
 #  file:
 #    path: "{{ worklocation }}"
 #    owner: "{{ user }}"

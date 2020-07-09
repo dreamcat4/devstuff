@@ -34,7 +34,8 @@
 
 - name: Unarchive 
   unarchive:
-    src: "{{ tarpath }}"
+    src: /opt/gogs/gogs_0.11.91_linux_amd64.tar.gz
     dest: "{{ installPath }}"
+    #dest: /opt/gogs/gogs_0.11.91_linux_amd64.tar.gz
     remote_src: yes
   when: application_dir.stat.exists == False

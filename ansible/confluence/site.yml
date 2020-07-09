@@ -1,17 +1,17 @@
 ---
 - name: setup application
   gather_facts: yes
-  hosts: c7node1
+  hosts: all
   remote_user: root
   #remote_user: user
   #become: yes
   #become_method: sudo
 
   roles:
-    #- addUser
-    #- install_application
-    #- install_packages
+    - addUser
+    - install_application
+    - install_packages
     #- lvm 
-    #- symlink
-    #- service
-    - mysql
+    - symlink
+    - service
+    #- mysql

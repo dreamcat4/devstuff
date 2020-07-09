@@ -7,13 +7,13 @@
     group: root
     mode: u=x
 
-- name: enable and start service
-  service:
-    name:  "{{ service }}"
-    state: started
-    enabled: yes
+#- name: enable and start service
+  #service:
+    #name:  "{{ service }}"
+    #state: started
+    #enabled: yes
 
-- name: start service 
-  service:
-    name: "{{ service }}"
-    state: started
+#- name: start service 
+  #service:
+    #name: "{{ service }}"
+    #state: started
