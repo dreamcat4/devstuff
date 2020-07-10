@@ -3,3 +3,4 @@ atlassian-confluence-7.3.3.tar.gz*
 hosts
 host
 .terraform
+terraform.tfstate
