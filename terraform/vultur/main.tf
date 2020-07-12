@@ -46,7 +46,7 @@ variable "ssh_keys05" {
 resource "vultr_network" "fra02-net" {
     description = "privat network frankfurt"
     region_id = 9
-    cidr_block  = "10.2.1.0/24"
+    cidr_block  = "10.2.1.0/28"
 }
 
 
@@ -75,11 +75,36 @@ resource "vultr_server" "proxy01" {
     firewall_group_id = vultr_firewall_group.proxy.id
 }
 
+resource "vultr_server" "media01" {
+    plan_id = "201"
+    region_id = "9"
+    os_id = "167"
+    label = "media"
+    tag = "media"
+    hostname = "media01"
+    network_ids = ["${vultr_network.fra02-net.id}"]
+    ssh_key_ids = ["${var.ssh_keys01}","${var.ssh_keys02}", "${var.ssh_keys03}", "${var.ssh_keys04}", "${var.ssh_keys05}" ]
+    firewall_group_id = vultr_firewall_group.media.id
+}
+
+
+resource "vultr_server" "media02" {
+    plan_id = "201"
+    region_id = "9"
+    os_id = "167"
+    label = "media"
+    tag = "media"
+    hostname = "media02"
+    network_ids = ["${vultr_network.fra02-net.id}"]
+    ssh_key_ids = ["${var.ssh_keys01}","${var.ssh_keys02}", "${var.ssh_keys03}", "${var.ssh_keys04}", "${var.ssh_keys05}" ]
+    firewall_group_id = vultr_firewall_group.media.id
+}
+
 resource "vultr_firewall_group" "cloudbast" {
     description = "firewall for cloudbast"
 }
 
-resource "vultr_firewall_rule" "cloudbast" {
+resource "vultr_firewall_rule" "cloudbast-ssh" {
     #firewall_group_id = ["${vultr_firewall_group.cloudbast.id}"]
     firewall_group_id = vultr_firewall_group.cloudbast.id
     protocol = "tcp"
@@ -96,7 +121,7 @@ resource "vultr_firewall_group" "proxy" {
 resource "vultr_firewall_rule" "proxy_ssh" {
     firewall_group_id = vultr_firewall_group.proxy.id
     protocol = "tcp"
-    network = "10.2.1.0/24"
+    network = "10.2.1.0/28"
     from_port = "22"
     #to_port = "8090"
 }
@@ -105,16 +130,65 @@ resource "vultr_firewall_rule" "proxy_ssh" {
 resource "vultr_firewall_rule" "proxy_http" {
     firewall_group_id = vultr_firewall_group.proxy.id
     protocol = "tcp"
-    network = "10.2.1.0/24"
+    network = "10.2.1.0/28"
     from_port = "80"
-    #to_port = "8090"
+    #to_port = "80"
 }
 
 
 resource "vultr_firewall_rule" "proxy_https" {
     firewall_group_id = vultr_firewall_group.proxy.id
     protocol = "tcp"
-    network = "10.2.1.0/24"
+    network = "10.2.1.0/28"
     from_port = "443"
+    #to_port = "443"
+}
+
+resource "vultr_firewall_group" "db" {
+    description = "firewall for database servers"
+}
+
+resource "vultr_firewall_rule" "db_ssh" {
+    firewall_group_id = vultr_firewall_group.proxy.id
+    protocol = "tcp"
+    network = "10.2.1.0/28"
+    from_port = "22"
     #to_port = "8090"
 }
+
+
+resource "vultr_firewall_rule" "db_mysql" {
+    firewall_group_id = vultr_firewall_group.proxy.id
+    protocol = "tcp"
+    network = "10.2.1.0/28"
+    from_port = "3306"
+    #to_port = "80"
+}
+
+
+resource "vultr_firewall_rule" "media_ssh" {
+    firewall_group_id = vultr_firewall_group.proxy.id
+    protocol = "tcp"
+    network = "10.2.1.0/28"
+    from_port = "22"
+    #to_port = "8090"
+}
+
+
+resource "vultr_firewall_rule" "media_port_range_tcp" {
+    firewall_group_id = vultr_firewall_group.media.id
+    protocol = "tcp"
+    network = "10.2.1.0/28"
+    from_port = "80"
+    to_port = "8443"
+}
+
+
+resource "vultr_firewall_rule" "media_port_range_udp" {
+    firewall_group_id = vultr_firewall_group.media.id
+    protocol = "udp"
+    network = "10.2.1.0/28"
+    from_port = "80"
+    to_port = "8443"
+}
+
