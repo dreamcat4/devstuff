@@ -37,13 +37,50 @@ data "digitalocean_ssh_key" "ssh_keys05" {
   name = "ryzen5"
 }
 
-
 # This creates a new domain if destroy will delete domain from deo account
+resource "digitalocean_domain" "habbispw" {
+  name       = "habbis.pw"
+}
 
-#resource "digitalocean_domain" "default" {
-  #name       = "habbis.pw"
-  #ip_address = digitalocean_droplet.test01.ipv4_address
-#}
+# Add an A record to the domain for www.example.com.
+resource "digitalocean_record" "cloudbas01" {
+  domain = digitalocean_domain.habbispw.name
+  type   = "A"
+  name   = "cloudbast01"
+  value = digitalocean_droplet.cloudbast01.ipv4_address
+}
+
+# Add an A record to the domain for www.example.com.
+resource "digitalocean_record" "proxy01" {
+  domain = digitalocean_domain.habbispw.name
+  type   = "A"
+  name   = "proxy01"
+  value = digitalocean_droplet.proxy01.ipv4_address
+}
+
+# Add an A record to the domain for www.example.com.
+resource "digitalocean_record" "db01" {
+  domain = digitalocean_domain.habbispw.name
+  type   = "A"
+  name   = "db01"
+  value = digitalocean_droplet.db01.ipv4_address
+}
+
+# Add an A record to the domain for www.example.com.
+resource "digitalocean_record" "media01" {
+  domain = digitalocean_domain.habbispw.name
+  type   = "A"
+  name   = "media01"
+  value = digitalocean_droplet.media01.ipv4_address
+}
+
+# Add an A record to the domain for www.example.com.
+resource "digitalocean_record" "media02" {
+  domain = digitalocean_domain.habbispw.name
+  type   = "A"
+  name   = "media02"
+  value = digitalocean_droplet.media02.ipv4_address
+}
 
 # privat network setup deo will be removed when destroyed
 resource "digitalocean_vpc" "fra2-net" {
@@ -64,7 +101,6 @@ resource "digitalocean_vpc" "fra2-net" {
   #volume_id  = data.digitalocean_volume.media-stor.id
 #}
 
-
 # create server
 resource "digitalocean_droplet" "cloudbast01" {
   name     = "cloudbast01"
@@ -77,7 +113,6 @@ resource "digitalocean_droplet" "cloudbast01" {
 
 }
 
-
 # create server
 resource "digitalocean_droplet" "db01" {
   name     = "db01"
@@ -89,7 +124,6 @@ resource "digitalocean_droplet" "db01" {
   #ip_address = digitalocean_droplet.test01.ipv4_address
 
 }
-
 
 # create reverse proxy server
 resource "digitalocean_droplet" "proxy01" {
@@ -305,4 +339,3 @@ resource "digitalocean_firewall" "proxy" {
     destination_addresses = ["0.0.0.0/0"]
   }
 }
-
