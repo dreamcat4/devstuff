@@ -1,10 +1,11 @@
-#variable "VULTR_API_KEY" {}
+variable "VULTR_API_KEY" {}
 
 # Configure the Vultr Provider
 provider "vultr" {
   api_key = "VULTR_API_KEY"
+
   rate_limit = 700
-  retry_limit = 3
+  retry_limit = 10
 }
 
 # to list your ssh key related to your vultur account user the api
@@ -73,6 +74,19 @@ resource "vultr_server" "proxy01" {
     network_ids = ["${vultr_network.fra02-net.id}"]
     ssh_key_ids = ["${var.ssh_keys01}","${var.ssh_keys02}", "${var.ssh_keys03}", "${var.ssh_keys04}", "${var.ssh_keys05}" ]
     firewall_group_id = vultr_firewall_group.proxy.id
+}
+
+
+resource "vultr_server" "db01" {
+    plan_id = "201"
+    region_id = "9"
+    os_id = "167"
+    label = "db"
+    tag = "db01"
+    hostname = "db01"
+    network_ids = ["${vultr_network.fra02-net.id}"]
+    ssh_key_ids = ["${var.ssh_keys01}","${var.ssh_keys02}", "${var.ssh_keys03}", "${var.ssh_keys04}", "${var.ssh_keys05}" ]
+    firewall_group_id = vultr_firewall_group.db.id
 }
 
 resource "vultr_server" "media01" {
@@ -149,7 +163,7 @@ resource "vultr_firewall_group" "db" {
 }
 
 resource "vultr_firewall_rule" "db_ssh" {
-    firewall_group_id = vultr_firewall_group.proxy.id
+    firewall_group_id = vultr_firewall_group.db.id
     protocol = "tcp"
     network = "10.2.1.0/28"
     from_port = "22"
@@ -158,7 +172,7 @@ resource "vultr_firewall_rule" "db_ssh" {
 
 
 resource "vultr_firewall_rule" "db_mysql" {
-    firewall_group_id = vultr_firewall_group.proxy.id
+    firewall_group_id = vultr_firewall_group.db.id
     protocol = "tcp"
     network = "10.2.1.0/28"
     from_port = "3306"
@@ -166,8 +180,13 @@ resource "vultr_firewall_rule" "db_mysql" {
 }
 
 
+resource "vultr_firewall_group" "media" {
+    description = "firewall for media servers"
+}
+
+
 resource "vultr_firewall_rule" "media_ssh" {
-    firewall_group_id = vultr_firewall_group.proxy.id
+    firewall_group_id = vultr_firewall_group.media.id
     protocol = "tcp"
     network = "10.2.1.0/28"
     from_port = "22"
