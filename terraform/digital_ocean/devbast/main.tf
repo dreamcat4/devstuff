@@ -6,10 +6,10 @@ provider "digitalocean" {
   token = var.do_token
 }
 
-variable "cidr_subnet" {
-  description = "CIDR block for the internal fra1 subnet"
-  default = "10.2.1.0/24"
-}
+#variable "cidr_subnet" {
+  #description = "CIDR block for the internal fra1 subnet"
+  #default = "10.2.1.0/24"
+#}
 
 # my ssh keys in my digital ocean account change when using 
 # own account
@@ -37,21 +37,10 @@ data "digitalocean_ssh_key" "ssh_keys05" {
   name = "ryzen5"
 }
 
-
 # This creates a new domain if destroy will delete domain from deo account
-
 resource "digitalocean_domain" "habbestadtech" {
   name       = "habbestad.tech"
-  #ip_address = digitalocean_droplet.test01.ipv4_address
 }
-
-#resource "digitalocean_domain" "default" {
-#  name = "example.com"
-#}
-
-#data "digitalocean_domain" "habbispw" {
-#  name = "habbis.pw"
-#}
 
 # Add an A record to the domain for www.example.com.
 resource "digitalocean_record" "devbast01" {
@@ -62,10 +51,8 @@ resource "digitalocean_record" "devbast01" {
 }
 
 # privat network setup deo will be removed when destroyed
-resource "digitalocean_vpc" "fra2-net" {
-  name     = "fra2-net"
-  region   = "fra1"
-  ip_range = "${var.cidr_subnet}"
+data"digitalocean_vpc" "fra1-net" {
+  name     = "fra1-net"
 }
 
 # create volume for storage
@@ -86,7 +73,7 @@ resource "digitalocean_droplet" "devbast01" {
   size     = "s-1vcpu-1gb"
   image    = "ubuntu-18-04-x64"
   region   = "fra1"
-  vpc_uuid = digitalocean_vpc.fra2-net.id
+  vpc_uuid = data.digitalocean_vpc.fra1-net.id
   ssh_keys = [data.digitalocean_ssh_key.ssh_keys01.id, data.digitalocean_ssh_key.ssh_keys02.id, data.digitalocean_ssh_key.ssh_keys03.id, data.digitalocean_ssh_key.ssh_keys04.id, data.digitalocean_ssh_key.ssh_keys05.id ]
   #ip_address = digitalocean_droplet.test01.ipv4_address
 
