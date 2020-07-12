@@ -79,8 +79,8 @@ resource "digitalocean_droplet" "cloudbast01" {
 
 
 # create server
-resource "digitalocean_droplet" "mariadb01" {
-  name     = "mariadb01"
+resource "digitalocean_droplet" "db01" {
+  name     = "db01"
   size     = "s-1vcpu-1gb"
   image    = "ubuntu-18-04-x64"
   region   = "fra1"
@@ -218,7 +218,7 @@ resource "digitalocean_firewall" "media" {
 resource "digitalocean_firewall" "database" {
   name = "app-allow-out-HTTPS-HTTP-in-SSH-MYSQL-from-fra2"
 
-  droplet_ids = [digitalocean_droplet.mariadb01.id]
+  droplet_ids = [digitalocean_droplet.db01.id]
 
   inbound_rule {
     protocol         = "tcp"
