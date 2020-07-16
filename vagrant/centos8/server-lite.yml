@@ -1,8 +1,8 @@
 ---
 - hosts: all
   #remote_user: root
-  remote_user: vagrant
-  #remote_user: user
+  #remote_user: vagrant
+  remote_user: user
   become: yes
   become_method: sudo
 
@@ -82,6 +82,15 @@
       line: "Subsystem  sftp /usr/libexec/openssh/sftp-server"
     #when: ansible_facts == "CentOS"
     when: ansible_pkg_mgr == "yum"
+
+
+  - name: add right sftp server for rhel/centos in sshd_config
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '/usr/lib/openssh/sftp-server'
+      line: "Subsystem  sftp /usr/libexec/openssh/sftp-server"
+    #when: ansible_facts == "CentOS"
+    when: ansible_pkg_mgr == "dnf"
 
   - name: add user called user with sudo right
     user:
