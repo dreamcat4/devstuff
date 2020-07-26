@@ -37,7 +37,6 @@ data "digitalocean_ssh_key" "ssh_keys05" {
   name = "ryzen5"
 }
 
-# This creates a new domain if destroy will delete domain from deo account
 resource "digitalocean_domain" "habbispw" {
   name       = "habbis.pw"
 }
@@ -173,6 +172,10 @@ resource "digitalocean_firewall" "cloudbast" {
     source_addresses = ["0.0.0.0/0"]
 }
 
+  # these rules for allowing incoming traffic to sever
+# when initiated by the serve.
+# maye the proxy server can be made to cache update instead.
+  
   outbound_rule {
     protocol         = "tcp"
     port_range       = "443"
@@ -197,6 +200,9 @@ resource "digitalocean_firewall" "cloudbast" {
   }
 }
 
+# these rules for allowing incoming traffic to sever
+# when initiated by the serve.
+# maye the proxy server can be made to cache update instead.
 # firewall rules with more than one droplet defined
 resource "digitalocean_firewall" "media" {
   name = "app-allow-out-HTTPS-HTTP-in-SSH-from-fra2"
@@ -221,9 +227,10 @@ resource "digitalocean_firewall" "media" {
     source_addresses = ["10.2.1.0/24"]
 }
 
-# allow out from ubuntu source.list
-# digitaloceanmirrors.com,security.ubuntu.com, archive.ubuntu.com
-
+  
+# these rules for allowing incoming traffic to sever
+# when initiated by the serve.
+# maye the proxy server can be made to cache update instead.
   outbound_rule {
     protocol         = "tcp"
     port_range       = "443"
@@ -266,6 +273,10 @@ resource "digitalocean_firewall" "database" {
     source_addresses = ["10.2.1.0/24"]
 }
 
+# these rules for allowing incoming traffic to sever
+# when initiated by the serve.
+# maye the proxy server can be made to cache update instead.
+  
   outbound_rule {
     protocol         = "tcp"
     port_range       = "443"
@@ -316,6 +327,10 @@ resource "digitalocean_firewall" "proxy" {
     source_addresses = ["10.2.1.0/24"]
 }
 
+# these rules for allowing incoming traffic to sever
+# when initiated by the serve.
+# maye the proxy server can be made to cache update instead.
+  
   outbound_rule {
     protocol         = "tcp"
     port_range       = "443"
